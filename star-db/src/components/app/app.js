@@ -3,10 +3,11 @@ import React, {Component} from 'react';
 import Header from '../header';
 import RandomPlanet from '../random-planet';
 import ErrorBoundry from '../error-boundry';
+
 import ItemDetails, {Record} from "../item-details/item-details";
 import SwapiService from "../../services/swapi-service";
 
-import ItemList from '../item-list';
+import {PersonDetails, PersonList, PlanetDetails, PlanetList, StarshipDetails, StarshipList} from '../sw-components';
 
 import './app.css';
 
@@ -19,72 +20,68 @@ export default class App extends Component {
     };
 
     toggleRandomPlanet = () => {
-    this.setState((state) => {
-      return {
-        showRandomPlanet: !state.showRandomPlanet
-      }
-    });
-  };
+        this.setState((state) => {
+            return {
+                showRandomPlanet: !state.showRandomPlanet
+            }
+        });
+    };
 
-  render() {
+    render() {
 
-      const planet = this.state.showRandomPlanet ?
-          <RandomPlanet/> :
-          null;
+        const planet = this.state.showRandomPlanet ?
+            <RandomPlanet/> :
+            null;
 
-      const {
-          getPerson,
-          getStarship,
-          getPersonImage,
-          getStarshipImage,
-          getAllPeople,
-          getAllPlanets
-      } = this.swapiService;
+        const {
+            getPerson,
+            getStarship,
+            getPersonImage,
+            getStarshipImage,
+            getAllPeople,
+            getAllPlanets
+        } = this.swapiService;
 
-      const personDetails = (
-          <ItemDetails
-              itemId={11}
-              getData={getPerson}
-              getImageUrl={getPersonImage}>
+        const personDetails = (
+            <ItemDetails
+                itemId={11}
+                getData={getPerson}
+                getImageUrl={getPersonImage}>
 
-              <Record field="gender" label="Gender"/>
-              <Record field="eyeColor" label="Eye Color"/>
+                <Record field="gender" label="Gender"/>
+                <Record field="eyeColor" label="Eye Color"/>
 
-          </ItemDetails>
-      );
+            </ItemDetails>
+        );
 
-    const starshipDetails = (
-        <ItemDetails
-            itemId={5}
-            getData={getStarship}
-            getImageUrl={getStarshipImage}>
+        const starshipDetails = (
+            <ItemDetails
+                itemId={5}
+                getData={getStarship}
+                getImageUrl={getStarshipImage}>
 
-            <Record field="model" label="Model"/>
-            <Record field="length" label="Length"/>
-            <Record field="costInCredits" label="Cost"/>
-        </ItemDetails>
-    );
+                <Record field="model" label="Model"/>
+                <Record field="length" label="Length"/>
+                <Record field="costInCredits" label="Cost"/>
+            </ItemDetails>
+        );
 
     return (
         <ErrorBoundry>
             <div className="stardb-app">
                 <Header/>
 
-                <ItemList
-                    getData={getAllPeople}
-                    onItemSelected={() => {
-                    }}>
+                <PersonDetails itemId={11}/>
 
-                    {({name}) => <span>{name}</span>}
-                </ItemList>
+                <PlanetDetails itemId={5}/>
 
-                <ItemList
-                    getData={getAllPlanets}
-                    onItemSelected={() => {
-                    }}>
+                <StarshipDetails itemId={9}/>
 
-                    {({name}) => <span>{name}</span>}
-                </ItemList>
+                <PersonList/>
+
+                <StarshipList/>
+
+                <PlanetList/>
 
             </div>
         </ErrorBoundry>
