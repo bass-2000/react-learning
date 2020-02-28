@@ -12,13 +12,13 @@ const {
 } = swapiService;
 
 const withChildFunction = (Wrapped, fn) => {
-  return (props) => {
-    return (
-        <Wrapped {...props}>
-          {fn}
-        </Wrapped>
-    )
-  };
+    return (props) => {
+        return (
+            <Wrapped {...props}>
+                {fn}
+            </Wrapped>
+        )
+    };
 };
 
 const renderName = ({name}) => <span>{name}</span>;
