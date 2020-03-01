@@ -10,38 +10,38 @@ import './people-page.css';
 
 export default class PeoplePage extends Component {
 
-    swapiService = new SwapiService();
+  swapiService = new SwapiService();
 
-    state = {
-        selectedPerson: 11
-    };
+  state = {
+    selectedPerson: 11
+  };
 
-    onPersonSelected = (selectedPerson) => {
-        this.setState({selectedPerson});
-    };
+  onPersonSelected = (selectedPerson) => {
+    this.setState({selectedPerson});
+  };
 
-    render() {
+  render() {
 
-        const itemList = (
-            <ItemList
-                onItemSelected={this.onPersonSelected}
-                getData={this.swapiService.getAllPeople}>
+    const itemList = (
+        <ItemList
+            onItemSelected={this.onPersonSelected}
+            getData={this.swapiService.getAllPeople}>
 
-                {(i) => (
-                    `${i.name} (${i.birthYear})`
-                )}
+          {(i) => (
+              `${i.name} (${i.birthYear})`
+          )}
 
-            </ItemList>
-        );
+        </ItemList>
+    );
 
-        const personDetails = (
-            <ErrorBoundry>
-                <ItemDetails itemId={this.state.selectedPerson}/>
-            </ErrorBoundry>
-        );
+    const personDetails = (
+        <ErrorBoundry>
+          <ItemDetails itemId={this.state.selectedPerson}/>
+        </ErrorBoundry>
+    );
 
-        return (
-            <Row left={itemList} right={personDetails}/>
-        );
-    }
+    return (
+        <Row left={itemList} right={personDetails}/>
+    );
+  }
 }
