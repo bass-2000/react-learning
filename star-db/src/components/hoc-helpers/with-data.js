@@ -9,7 +9,17 @@ const withData = (View) => {
             data: null
         };
 
+        componentDidUpdate(prevProps, prevState, snapshot) {
+            if (this.props.getData !== prevProps.getData) {
+                this.update();
+            }
+        }
+
         componentDidMount() {
+            this.update();
+        }
+
+        update() {
             this.props.getData()
                 .then((data) => {
                     this.setState({
@@ -18,16 +28,16 @@ const withData = (View) => {
                 });
         }
 
-    render() {
-        const {data} = this.state;
+        render() {
+            const {data} = this.state;
 
-      if (!data) {
-          return <Spinner/>;
-      }
+            if (!data) {
+                return <Spinner/>;
+            }
 
-        return <View {...this.props} data={data}/>;
-    }
-  };
+            return <View {...this.props} data={data}/>;
+        }
+    };
 };
 
 export default withData;
