@@ -34,7 +34,7 @@ const useRequest = (request) => {
         data: null,
         loading: true,
         error: null
-    }), [])
+    }), []);
     const [dataState, setDataState] = useState(initialState);
     useEffect(() => {
         setDataState(initialState);
