@@ -7,21 +7,21 @@ const renderName = ({name}) => <span>{name}</span>;
 const renderModelAndName = ({model, name}) => <span>{name} ({model})</span>;
 
 const mapPersonMethodsToProps = (swapiService) => {
-    return {
-        getData: swapiService.getAllPeople
-    };
+  return {
+    getData: swapiService.getAllPeople
+  };
 };
 
 const mapPlanetMethodsToProps = (swapiService) => {
-    return {
-        getData: swapiService.getAllPlanets
-    };
+  return {
+    getData: swapiService.getAllPlanets
+  };
 };
 
 const mapStarshipMethodsToProps = (swapiService) => {
-    return {
-        getData: swapiService.getAllStarships
-    };
+  return {
+    getData: swapiService.getAllStarships
+  };
 };
 
 const PersonList = compose(
@@ -43,7 +43,7 @@ const StarshipList = compose(
 )(ItemList);
 
 export {
-    PersonList,
-    PlanetList,
-    StarshipList
+  PersonList,
+  PlanetList,
+  StarshipList
 };
