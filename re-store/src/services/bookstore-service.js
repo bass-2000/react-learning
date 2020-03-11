@@ -1,7 +1,8 @@
+
 export default class BookstoreService {
 
-    getBooks() {
-        return [];
-    }
+  getBooks() {
+    return [];
+  }
 
 }
