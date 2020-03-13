@@ -10,37 +10,37 @@ import './book-list.css';
 
 class BookList extends Component {
 
-    componentDidMount() {
-        // 1. receive data
-        const {bookstoreService} = this.props;
-        const data = bookstoreService.getBooks();
+  componentDidMount() {
+    // 1. receive data
+    const {bookstoreService} = this.props;
+    const data = bookstoreService.getBooks();
 
-        // 2. dispacth action to store
-        this.props.booksLoaded(data);
-    }
+    // 2. dispacth action to store
+    this.props.booksLoaded(data);
+  }
 
-    render() {
-        const {books} = this.props;
-        return (
-            <ul>
-                {
-                    books.map((book) => {
-                        return (
-                            <li key={book.id}><BookListItem book={book}/></li>
-                        )
-                    })
-                }
-            </ul>
-        );
-    }
+  render() {
+    const {books} = this.props;
+    return (
+        <ul className="book-list">
+          {
+            books.map((book) => {
+              return (
+                  <li key={book.id}><BookListItem book={book}/></li>
+              )
+            })
+          }
+        </ul>
+    );
+  }
 }
 
 const mapStateToProps = ({books}) => {
-    return {books};
+  return {books};
 };
 
 const mapDispatchToProps = {
-    booksLoaded
+  booksLoaded
 };
 
 export default compose(
