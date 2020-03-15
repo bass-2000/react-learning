@@ -54,12 +54,12 @@ const updateOrder = (state, bookId, quantity) => {
 
 const updateShoppingCart = (state, action) => {
 
-  if (state === undefined) {
-    return {
-      cartItems: [],
-      orderTotal: 0
+    if (state === undefined) {
+        return {
+            cartItems: [],
+            orderTotal: 0
+        }
     }
-  }
 
     switch (action.type) {
         case 'BOOK_ADDED_TO_CART':
@@ -72,9 +72,9 @@ const updateShoppingCart = (state, action) => {
             const item = state.shoppingCart.cartItems.find(({id}) => id === action.payload);
             return updateOrder(state, action.payload, -item.count);
 
-    default:
-      return state.shoppingCart;
-  }
+        default:
+            return state.shoppingCart;
+    }
 };
 
 export default updateShoppingCart;
