@@ -1,5 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
+
+import {allBooksRemovedFromCart, bookAddedToCart, bookRemovedFromCart} from '../../actions';
+
 import './shopping-cart-table.css';
 
 const ShoppingCartTable = ({items, total, onIncrease, onDecrease, onDelete}) => {
@@ -30,31 +33,31 @@ const ShoppingCartTable = ({items, total, onIncrease, onDecrease, onDelete}) => 
                 </td>
             </tr>
         );
-  };
+    };
 
-  return (
-      <div className="shopping-cart-table">
-          <h2>Your Order</h2>
-          <table className="table">
-              <thead>
-              <tr>
-                  <th>#</th>
-                  <th>Item</th>
-                  <th>Count</th>
-                  <th>Price</th>
-                  <th>Action</th>
-              </tr>
-              </thead>
+    return (
+        <div className="shopping-cart-table">
+            <h2>Your Order</h2>
+            <table className="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Item</th>
+                    <th>Count</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
 
-              <tbody>
-              {items.map(renderRow)}
-              </tbody>
-          </table>
+                <tbody>
+                {items.map(renderRow)}
+                </tbody>
+            </table>
 
-          <div className="total">
-              Total: ${total}
-          </div>
-      </div>
+            <div className="total">
+                Total: ${total}
+            </div>
+        </div>
   );
 };
 
@@ -65,20 +68,10 @@ const mapStateToProps = ({cartItems, orderTotal}) => {
     };
 };
 
-const mapDispatchToProps = () => {
-  return {
-    onIncrease: (id) => {
-      console.log(`Increase ${id}`);
-    },
-
-    onDecrease: (id) => {
-      console.log(`Decrease ${id}`);
-    },
-
-    onDelete: (id) => {
-      console.log(`Delete ${id}`);
-    }
-  }
+const mapDispatchToProps = {
+    onIncrease: bookAddedToCart,
+    onDecrease: bookRemovedFromCart,
+    onDelete: allBooksRemovedFromCart
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCartTable);
