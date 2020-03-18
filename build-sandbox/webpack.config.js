@@ -3,10 +3,23 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.ico$/,
+                test: /\.js$/,
+                exclude: /node_modules/,
                 use: [
                     {
-                        loader: 'file-loader'
+                        loader: 'babel-loader'
+                    }
+                ]
+            },
+            {
+                test: /\.png$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            outputPath: 'images',
+                            name: '[name]-[sha1:hash:7].[ext]'
+                        }
                     }
                 ]
             }
